@@ -1,7 +1,6 @@
 package com.example.stepdefinitions;
 
 import org.openqa.selenium.WebDriver;
-import com.example.PageManager;
 import com.example.setup.DriverManager;
 
 import io.cucumber.java.After;
@@ -10,14 +9,12 @@ import io.cucumber.java.Scenario;
 
 public class Hooks {
     private WebDriver driver;
-    private PageManager pages;
     
     @Before
     public void setup(Scenario scenario) {
         System.out.println("Starting scenario: " + scenario.getName());
         driver = DriverManager.getDriver(); // Initialize driver for this thread
         driver.manage().window().maximize();
-        pages = new PageManager(driver);
     }
     
     @After

@@ -7,7 +7,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 import java.net.URI;
-import java.net.URL;
 import java.util.List;
 
 public class DriverManager {

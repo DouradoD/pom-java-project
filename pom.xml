@@ -9,8 +9,8 @@
     <packaging>jar</packaging>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <surefire.version>2.22.2</surefire.version>
         <cucumber.version>7.15.0</cucumber.version>
     </properties>
