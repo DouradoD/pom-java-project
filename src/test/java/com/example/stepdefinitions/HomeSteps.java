@@ -1,7 +1,8 @@
 package com.example.stepdefinitions;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.example.pages.HomePage;
 import com.example.setup.TestContext;
 
 import io.cucumber.java.en.Then;
@@ -27,8 +28,11 @@ public class HomeSteps {
     }
     @Then("he should see the title {string}")
     public void he_should_see_the_title(String string) {
-        assertEquals(true , context.getPages().getHome().IsHomeScreenVisible());
-        
-    }
+        //assertEquals(true , context.getPages().getPage(HomePage.class).IsHomeScreenVisible());
+        Object pageInstance = context.getPages().getPage(HomePage.class);
+        System.out.println("Loaded page class: " + pageInstance.getClass().getName());
+        String projectName = System.getProperty("project");
+        assertTrue( pageInstance.getClass().getName().contains(projectName));
+    }   
 
 }

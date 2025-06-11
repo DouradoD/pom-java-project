@@ -1,25 +1,23 @@
+// src/main/java/com/example/setup/TestContext.java
 package com.example.setup;
 
+import com.example.PageFactory;
 import org.openqa.selenium.WebDriver;
 
-import com.example.PageManager;
-
 public class TestContext {
-       private WebDriver driver;
-        private PageManager pages;
+    private final WebDriver driver;
+    private final PageFactory pageFactory;
 
-    
     public TestContext() {
-        this.driver = DriverManager.getDriver(); // Your driver initialization if needed
-        initializePages();
+        this.driver = DriverManager.getDriver();
+        this.pageFactory = new PageFactory(this.driver);
     }
-    
-    private void initializePages() {
-        pages = new PageManager(driver);
 
+    public PageFactory getPages() {
+        return pageFactory;
     }
     
-    // Getters for pages
-    public PageManager getPages() { return pages; }
-    public WebDriver getDriver() { return driver; }
+    public WebDriver getDriver() {
+        return driver;
+    }
 }

@@ -1,0 +1,12 @@
+// src/main/java/com/example/pages/BasePage.java
+package com.example.pages;
+
+import org.openqa.selenium.WebDriver;
+
+public abstract class BasePage {
+    protected final WebDriver driver;
+
+    public BasePage(WebDriver driver) {
+        this.driver = driver;
+    }
+}

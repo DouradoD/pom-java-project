@@ -29,5 +29,4 @@ import static io.cucumber.junit.platform.engine.Constants.PARALLEL_CONFIG_STRATE
 @ConfigurationParameter(key = PARALLEL_CONFIG_FIXED_PARALLELISM_PROPERTY_NAME, value = "4")
 @ConfigurationParameter(key = PARALLEL_CONFIG_FIXED_MAX_POOL_SIZE_PROPERTY_NAME, value = "4")
 public class TestRunner {
-
 }

@@ -3,33 +3,13 @@ import org.openqa.selenium.WebDriver;
 
 import com.example.mappings.HomeMapping;
 
-public class HomePage {
-    // Define the WebDriver instance
-    private WebDriver driver;
-    private HomeMapping mapping;
-
-    // Getter method for the WebDriver instance
-    public WebDriver getDriver() {
-        return driver;
-    }
-
-    public HomeMapping getMapping() {
-        return mapping;
-    }
-
-    // Constructor to initialize the WebDriver
+//@Page(name = "home")
+public class HomePage extends BasePage {
     public HomePage(WebDriver driver) {
-        this.driver = driver;
-        this.mapping = new HomeMapping();
+        super(driver);
     }
-
-    // Abstract method to be implemented by subclasses
-    public Boolean IsHomeScreenVisible(){
-        Boolean status;
-        status = this.driver.findElement(mapping.LOGO).isDisplayed();
-
-        return status;
+    
+    public void navigate() {
+        System.out.println("Default HomePage navigation");
     }
-
-    // Other common methods for login pages can be added here
 }

@@ -84,7 +84,7 @@ pom-java-project
    ```bash
    mvn test
    Or
-   mvn clean test -DexecutionMode=local
+   mvn clean test -DexecutionMode=local -Dproject=ApplicationA
    ```
 
 ---
