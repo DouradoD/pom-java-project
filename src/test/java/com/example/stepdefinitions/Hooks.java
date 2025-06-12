@@ -13,7 +13,8 @@ public class Hooks {
     @Before
     public void setup(Scenario scenario) {
         System.out.println("Starting scenario: " + scenario.getName());
-        driver = DriverManager.getDriver(); // Initialize driver for this thread
+        DriverManager.initializeDriver();
+        driver = DriverManager.getDriver();
         driver.manage().window().maximize();
     }
     

@@ -1,0 +1,6 @@
+{
+  "username": "testuser",
+  "password": "password123",
+  "points": 100,
+  "products": ["Tier_1", "Tier_2"]
+}

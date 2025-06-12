@@ -13,7 +13,7 @@ public class DriverManager {
 
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    public static WebDriver getDriver() {
+    public static void initializeDriver() {
         if (driver.get() == null) {
             String executionMode = System.getProperty("executionMode", "local"); // Default to local
             String gridUrl = System.getProperty("gridUrl", "http://localhost:4444/wd/hub"); // Default Grid URL
@@ -33,6 +33,9 @@ public class DriverManager {
                 driver.set(new ChromeDriver(options));
             }
         }
+    }
+
+    public static WebDriver getDriver() {
         return driver.get();
     }
 

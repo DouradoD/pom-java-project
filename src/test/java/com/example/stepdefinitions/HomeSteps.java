@@ -1,14 +1,11 @@
 package com.example.stepdefinitions;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import com.example.pages.HomePage;
 import com.example.setup.TestContext;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import com.example.helpers.StringHelper;
 
 public class HomeSteps {
     
