@@ -14,14 +14,10 @@ public class Hooks {
     
     @Before
     public void setup(Scenario scenario) {
-        if (ArgumentValidator.hasValidArgs()){
-            System.out.println("Starting scenario: " + scenario.getName());
-            DriverManager.initializeDriver();
-            driver = DriverManager.getDriver();
-            driver.manage().window().maximize();
-        } else {
-            throw new RuntimeException("Missing required arguments. Stopping test execution.");
-        }
+        System.out.println("Starting scenario: " + scenario.getName());
+        DriverManager.initializeDriver();
+        driver = DriverManager.getDriver();
+        driver.manage().window().maximize();
     }
     
     @After
