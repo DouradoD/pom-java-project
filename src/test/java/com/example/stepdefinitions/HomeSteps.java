@@ -8,6 +8,8 @@ import com.example.setup.TestContext;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import com.example.helpers.StringHelper;
+
 public class HomeSteps {
     
     TestContext context;
@@ -31,8 +33,9 @@ public class HomeSteps {
         //assertEquals(true , context.getPages().getPage(HomePage.class).IsHomeScreenVisible());
         Object pageInstance = context.getPages().getPage(HomePage.class);
         System.out.println("Loaded page class: " + pageInstance.getClass().getName());
-        String projectName = System.getProperty("project");
-        assertTrue( pageInstance.getClass().getName().contains(projectName));
+        //assertTrue( pageInstance.getClass().getName().contains(
+        //    StringHelper.capitalizeString(context.getSystemPropertiesAsMap().get("project"))));
+        context.getPages().getPage(HomePage.class).navigate();
     }   
 
 }

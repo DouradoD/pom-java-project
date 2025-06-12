@@ -1,15 +1,21 @@
 package com.example.pages;
 import org.openqa.selenium.WebDriver;
+import com.example.locators.HomeLocators;
+import com.example.LocatorLoader;
 
-import com.example.mappings.HomeMapping;
-
-//@Page(name = "home")
 public class HomePage extends BasePage {
-    public HomePage(WebDriver driver) {
+     private final HomeLocators locators;
+
+    public HomePage(WebDriver driver, String projectName) {
         super(driver);
+        this.locators = LocatorLoader.getLocators(
+            HomeLocators.class, 
+            projectName
+        );
     }
     
     public void navigate() {
+        System.out.println("Default -> Locator: "+this.locators.getLogo());
         System.out.println("Default HomePage navigation");
     }
 }

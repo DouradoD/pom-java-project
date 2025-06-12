@@ -6,16 +6,17 @@ import org.openqa.selenium.WebDriver;
 import java.lang.reflect.Constructor;
 import java.util.Map;
 import java.util.HashMap;
+import com.example.helpers.StringHelper;
 
 public class PageFactory {
     private final WebDriver driver;
     private final String projectName;
     private final Map<Class<?>, Object> pageCache = new HashMap<>();
 
-    public PageFactory(WebDriver driver) {
+    public PageFactory(WebDriver driver, Map<String, String> sessionInfo) {
         this.driver = driver;
         // Try system property first, then environment variable, fallback to empty string
-        String project = System.getProperty("project");
+        String project = sessionInfo.get("project");
         if (project == null || project.isEmpty()) {
             project = System.getenv("project");
         }
@@ -34,13 +35,13 @@ public class PageFactory {
             if (projectName != null && !projectName.isEmpty()) {
                 // Construct the custom class name and package
                 String defaultPackage = pageClass.getPackage().getName();
-                String customClassName = defaultPackage + "." + projectName + "." + 
-                                      pageClass.getSimpleName() + projectName;
+                String customClassName = defaultPackage + "." + projectName.toLowerCase() + "." + 
+                                      pageClass.getSimpleName() + StringHelper.capitalizeString(projectName);
                 
                 try {
                     Class<?> customClass = Class.forName(customClassName);
-                    Constructor<?> constructor = customClass.getConstructor(WebDriver.class);
-                    T instance = (T) constructor.newInstance(driver);
+                    Constructor<?> constructor = customClass.getConstructor(WebDriver.class, String.class);
+                    T instance = (T) constructor.newInstance(driver, projectName);
                     pageCache.put(pageClass, instance);
                     System.out.println("Created custom page: " + customClassName); // Debug
                     return instance;
@@ -52,8 +53,8 @@ public class PageFactory {
             }
 
             // Use default implementation
-            Constructor<T> constructor = pageClass.getConstructor(WebDriver.class);
-            T instance = constructor.newInstance(driver);
+            Constructor<T> constructor = pageClass.getConstructor(WebDriver.class, String.class);
+            T instance = constructor.newInstance(driver, projectName);
             pageCache.put(pageClass, instance);
             System.out.println("Created default page: " + pageClass.getName()); // Debug
             return instance;
