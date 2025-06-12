@@ -2,7 +2,7 @@
 package com.example.setup;
 
 import com.example.PageFactory;
-import com.example.managerpojo.UserManager;
+import com.example.managers.UserManager;
 
 import java.util.HashMap;
 import java.util.Map;

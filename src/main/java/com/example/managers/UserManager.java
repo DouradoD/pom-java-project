@@ -1,4 +1,4 @@
-package com.example.managerpojo;
+package com.example.managers;
 
 import com.example.pojos.User;
 import com.example.helpers.JsonReader;

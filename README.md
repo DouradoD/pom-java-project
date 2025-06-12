@@ -11,38 +11,101 @@ pom-java-project
 ├── src
 │   ├── main
 │   │   ├── java
-│   │   │   ├── com
-│   │   │   │   └── example
-│   │   │   │       ├── mappings
-│   │   │   │       │   └── HomeMapping.java
-│   │   │   │       ├── pages
-│   │   │   │       │   └── HomePage.java
+│   │   │   └── com
+│   │   │       └── example
+│   │   │           ├── helpers
+│   │   │           │   └── JsonReader.java
+│   │   │           ├── locators
+│   │   │           │   ├── HomeLocators.java
+│   │   │           │   └── appa
+│   │   │           │       └── HomeLocatorsAppa.java
+│   │   │           ├── pages
+│   │   │           │   ├── HomePage.java
+│   │   │           │   └── appa
+│   │   │           │       └── HomePageAppa.java
+│   │   │           ├── pojos
+│   │   │           │   └── User.java
+│   │   │           ├── managerpojo
+│   │   │           │   └── UserManager.java
+│   │   │           ├── LocatorLoader.java
+│   │   │           └── PageFactory.java
 │   │   └── resources
 │   │       └── config.properties
 │   ├── test
-│       ├── java
-│       │   ├── com
-│       │   │   └── example
-│       │   │       ├── runner
-│       │   │       │   └── TestRunner.java
-│       │   │       └── setup
-│       │   │       │   └── DriverManager.java
-│       │   │       │   └── TestContext.java
-│       │   │       └── stepdefinitions
-│       │   │       │   └── Hooks.java
-│       │   │       │   └── HomeSteps.java
-│       │   │       └── testdata
-│       │   │           └── TestData.java
-│       └── resources
-│           └── features
-│               └── home.feature
-│           └── junit-platform.properties
-│           └── test-config.properties
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── example
+│   │   │           ├── runner
+│   │   │           │   └── TestRunner.java
+│   │   │           ├── setup
+│   │   │           │   ├── DriverManager.java
+│   │   │           │   └── TestContext.java
+│   │   │           └── stepdefinitions
+│   │   │               ├── Hooks.java
+│   │   │               └── HomeSteps.java
+│   └── resources
+│       ├── features
+│       │   └── home.feature
+│       ├── junit-platform.properties
+│       ├── test-config.properties
+│       └── testdata
+│           └── appa
+│               └── user.json
 ├── pom.xml
 ├── Dockerfile
 ├── docker-compose.yml
 └── README.md
 ```
+Certainly! Here’s a brief description for each main folder in your structure. You can add this to your README.md under a **"Folder Descriptions"** section:
+
+---
+
+## Folder Descriptions
+
+- **src/main/java/com/example/helpers**  
+  Utility and helper classes used throughout the project (e.g., JSON readers, string utilities).
+
+- **src/main/java/com/example/locators**  
+  Contains locator classes that define how to find elements on web pages. Subfolders (e.g., `appa`) hold application-specific locators.
+
+- **src/main/java/com/example/pages**  
+  Page Object Model classes representing web pages and their behaviors. Subfolders (e.g., `appa`) hold application-specific page objects.
+
+- **src/main/java/com/example/pojos**  
+  Plain Old Java Objects (POJOs) used for data representation in tests (e.g., `User.java`).
+
+- **src/main/java/com/example/managerpojo**  
+  Manager classes for handling and providing logic around POJOs (e.g., `UserManager.java`).
+
+- **LocatorLoader.java**  
+  Utility class for loading locator definitions dynamically.
+
+- **PageFactory.java**  
+  Factory class for creating and managing page object instances.
+
+- **src/main/resources**  
+  Application configuration files and other resources used by the main codebase.
+
+- **src/test/java/com/example/runner**  
+  Test runner classes for executing test suites (e.g., `TestRunner.java`).
+
+- **src/test/java/com/example/setup**  
+  Test setup and context management classes (e.g., `DriverManager.java`, `TestContext.java`).
+
+- **src/test/java/com/example/stepdefinitions**  
+  Step definition classes for Cucumber feature files (e.g., `Hooks.java`, `HomeSteps.java`).
+
+- **src/test/java/com/example/testdata**  
+  Java classes for managing or representing test data (if any).
+
+- **src/test/resources/features**  
+  Cucumber feature files describing test scenarios in Gherkin syntax.
+
+- **src/test/resources/testdata**  
+  Static test data files (e.g., JSON files for users) used during test execution.
+
+- **src/test/resources/junit-platform.properties, test-config.properties**  
+  Configuration files for test execution and environment setup.
 
 ---
 
