@@ -1,9 +1,10 @@
 Feature: Access the Selenium initial Screen
 
-    @smoke
+    @pojo_test
     Scenario: Access the Selenium initial Screen - Smoke
-        When he accesses the URL "https://www.selenium.dev/"
+        When "Felipe" accesses the URL "https://www.selenium.dev/"
         Then he should see the title "SeleniumHQ Browser Automation"
+        And the "Felipe" should be the POJO User
     
     
     @regression

@@ -17,6 +17,7 @@ Thumbs.db
 # IDE specific files
 .idea/
 .vscode
+.vscode/*.json
 *.iml
 .classpath
 .project

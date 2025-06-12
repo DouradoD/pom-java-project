@@ -2,6 +2,7 @@
 package com.example.setup;
 
 import com.example.PageFactory;
+import com.example.managerpojo.UserManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,11 +14,14 @@ public class TestContext {
     private final WebDriver driver;
     private final PageFactory pageFactory;
     private final Map<String, String> sessionInfo;
+    private final UserManager userManager;
     
     public TestContext() {
         this.driver = DriverManager.getDriver();
         this.sessionInfo = getSystemPropertiesAsMap();
         this.pageFactory = new PageFactory(this.driver, this.sessionInfo);
+        this.userManager = new UserManager();
+
     }
 
     public PageFactory getPages() {
@@ -35,5 +39,9 @@ public class TestContext {
             map.put(name, props.getProperty(name));
         }
         return map;
+    }
+
+    public UserManager getUserManager() {
+        return userManager;
     }
 }
