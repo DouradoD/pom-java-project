@@ -8,17 +8,18 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Properties;
 
 public class DriverManager {
 
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    public static void initializeDriver() {
+    public static WebDriver initializeDriver(Properties properties) {
         if (driver.get() == null) {
             String executionMode = System.getProperty("executionMode", "local"); // Default to local
             String gridUrl = System.getProperty("gridUrl", "http://localhost:4444/wd/hub"); // Default Grid URL
 
-            ChromeOptions options = getChromeOptions(getArgs());
+            ChromeOptions options = getChromeOptions(properties);
 
             if ("grid".equalsIgnoreCase(executionMode)) {
                 // Run tests on Selenium Grid
@@ -33,6 +34,7 @@ public class DriverManager {
                 driver.set(new ChromeDriver(options));
             }
         }
+        return driver.get();
     }
 
     public static WebDriver getDriver() {
@@ -46,16 +48,24 @@ public class DriverManager {
         }
     }
 
-    public static List<String> getArgs() {
-        String argLine = System.getProperty("argLine", "");
-        return argLine.isEmpty() ? List.of() : List.of(argLine.split(","));
-    }
-
-    public static ChromeOptions getChromeOptions(List<String> args) {
+    public static ChromeOptions getChromeOptions(Properties seleniumProps) {
         ChromeOptions options = new ChromeOptions();
-        for (String arg : args) {
-            options.addArguments(arg);
-        }
+        seleniumProps.forEach((key, value) -> {
+            String k = key.toString();
+            String v = value != null ? value.toString() : "";
+            if (k.startsWith("chrome.arg.")) {
+                String arg = k.substring("chrome.arg.".length());
+                if ("headless".equals(arg)) {
+                    if (v.isEmpty() || v.equalsIgnoreCase("true")) {
+                        options.addArguments("--headless");
+                    }
+            }   else if (!v.isEmpty()) {
+                    options.addArguments("--" + arg + "=" + v);
+                } else {
+                    options.addArguments("--" + arg);
+                }
+            }
+        });
         return options;
     }
 }

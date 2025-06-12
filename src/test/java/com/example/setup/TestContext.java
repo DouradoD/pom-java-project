@@ -3,25 +3,34 @@ package com.example.setup;
 
 import com.example.PageFactory;
 import com.example.managers.UserManager;
+import com.example.managers.ConfigManager;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 
 public class TestContext {
-    private final WebDriver driver;
-    private final PageFactory pageFactory;
-    private final Map<String, String> sessionInfo;
-    private final UserManager userManager;
-    
-    public TestContext() {
-        this.driver = DriverManager.getDriver();
-        this.sessionInfo = getSystemPropertiesAsMap();
-        this.pageFactory = new PageFactory(this.driver, this.sessionInfo);
-        this.userManager = new UserManager();
+    private WebDriver driver;
+    private PageFactory pageFactory;
+    private Map<String, String> sessionInfo;
+    private UserManager userManager;
+    private ConfigManager configManager;
 
+    public void setConfigManager(ConfigManager configManager) {
+        this.configManager = configManager;
+        this.sessionInfo = configManager.getAllPropertiesAsMap();
+    }
+
+    public void initializeDriver(ConfigManager configManager) {
+        this.driver = DriverManager.initializeDriver(configManager.getProperties());
+    }
+
+    public void initializePageFactory() {
+        this.pageFactory = new PageFactory(this.driver, this.sessionInfo);
+    }
+
+    public void initializePOJOData(){
+         this.userManager = new UserManager();
     }
 
     public PageFactory getPages() {
@@ -31,17 +40,12 @@ public class TestContext {
     public WebDriver getDriver() {
         return driver;
     }
-    
-    public Map<String, String> getSystemPropertiesAsMap() {
-        Properties props = System.getProperties();
-        Map<String, String> map = new HashMap<>();
-        for (String name : props.stringPropertyNames()) {
-            map.put(name, props.getProperty(name));
-        }
-        return map;
-    }
 
     public UserManager getUserManager() {
         return userManager;
+    }
+
+    public ConfigManager getConfiManager() {
+        return configManager;
     }
 }
