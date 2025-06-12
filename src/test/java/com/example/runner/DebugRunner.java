@@ -3,8 +3,9 @@ package com.example.runner;
 import io.cucumber.core.cli.Main;
 
 public class DebugRunner {
+    
     public static void main(String[] args) {
-        System.setProperty("project", "appa");
+        // System.setProperty("project", "appa");
         System.setProperty("executionMode", "local");
         Main.run(
             "--glue", "com.example.stepdefinitions",

@@ -172,7 +172,7 @@ Certainly! Here’s a brief description for each main folder in your structure. 
 
 4. **Run the tests**:
    ```bash
-   mvn clean test -DexecutionMode=grid -DgridUrl=http://localhost:4444/wd/hub
+   mvn clean test -DexecutionMode=grid -Dproject=appa -DgridUrl=http://localhost:4444/wd/hub
 
 
 ## Running with Selenium Grid Using Docker Compose
@@ -195,7 +195,7 @@ Certainly! Here’s a brief description for each main folder in your structure. 
 
 4. **Run the tests**:
    ```bash
-   docker compose run --rm project-img mvn clean test -DexecutionMode=grid -DgridUrl=http://selenium-hub:4444/wd/hub
+   docker compose run --rm project-img mvn clean test -Dproject=appa -DexecutionMode=grid -DgridUrl=http://selenium-hub:4444/wd/hub
    ```
 
 5. **Access the test reports**:
